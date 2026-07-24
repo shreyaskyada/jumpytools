@@ -222,4 +222,13 @@ export const tools: Tool[] = [
     featured: true,
     fullWidth: false,
   },
+  {
+    slug: "bmi-calculator",
+    title: "BMI Calculator",
+    description:
+      "Calculate your Body Mass Index (BMI) and Ponderal Index instantly. Check your healthy weight range, weight category, and target thresholds.",
+    category: "math-calc",
+    featured: true,
+    fullWidth: false,
+  },
 ];
