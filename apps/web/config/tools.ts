@@ -231,4 +231,13 @@ export const tools: Tool[] = [
     featured: true,
     fullWidth: false,
   },
+  {
+    slug: "percentage-calculator",
+    title: "Percentage Calculator",
+    description:
+      "Calculate percentages, find percentage increases and decreases, compute percentage ratios, and add or subtract percentages easily.",
+    category: "math-calc",
+    featured: true,
+    fullWidth: false,
+  },
 ];
