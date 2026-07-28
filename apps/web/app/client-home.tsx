@@ -16,11 +16,13 @@ import {
   Wrench,
   Image as ImageIcon,
   ArrowRight,
+  Star,
 } from "lucide-react";
 import ToolCard from "@/components/tools/ToolCard";
 import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useFavorites } from "@/hooks/useFavorites";
 
 interface ClientHomeProps {
   tools: Tool[];
@@ -152,10 +154,16 @@ export default function ClientHome({ tools, categories }: ClientHomeProps) {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const { favorites } = useFavorites();
+
   const filteredTools = useMemo(() => {
     return tools.filter((tool) => {
-      // 1. Filter by category first if a specific one is selected
-      if (activeCategory !== "all" && tool.category !== activeCategory) {
+      // 1. Filter by category or favorites first if a specific one is selected
+      if (activeCategory === "favorites") {
+        if (!favorites.includes(tool.slug)) {
+          return false;
+        }
+      } else if (activeCategory !== "all" && tool.category !== activeCategory) {
         return false;
       }
       // 2. Filter by search query
@@ -166,7 +174,7 @@ export default function ClientHome({ tools, categories }: ClientHomeProps) {
         tool.category.toLowerCase().includes(query)
       );
     });
-  }, [tools, searchQuery, activeCategory]);
+  }, [tools, searchQuery, activeCategory, favorites]);
 
   const getToolsByCategory = (categoryId: string) => {
     return tools.filter((t) => t.category === categoryId);
@@ -252,6 +260,26 @@ export default function ClientHome({ tools, categories }: ClientHomeProps) {
             </span>
           </button>
 
+          {/* Favorites Pill */}
+          <button
+            onClick={() => {
+              setActiveCategory("favorites");
+            }}
+            className={cn(
+              "inline-flex items-center gap-2 px-4 py-2 rounded-xl text-sm font-semibold border border-border/70 bg-card hover:bg-muted/50 transition-all duration-300 shadow-2xs cursor-pointer",
+              activeCategory === "favorites" ? "border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400 dark:bg-amber-500/15 shadow-[0_0_15px_rgba(245,158,11,0.12)]" : "text-muted-foreground"
+            )}
+          >
+            <Star className={cn("h-4 w-4", activeCategory === "favorites" ? "fill-amber-500 text-amber-500" : "text-amber-500")} />
+            Favorites
+            <span className={cn(
+              "inline-flex items-center justify-center px-1.5 py-0.5 rounded-md text-[10px] font-bold",
+              activeCategory === "favorites" ? "bg-foreground/10 dark:bg-foreground/15 text-current" : "bg-muted text-muted-foreground"
+            )}>
+              {favorites.length}
+            </span>
+          </button>
+
           {/* Individual Category Pills */}
           {categories.map((category) => {
             const IconComponent = iconMap[category.icon] || Code;
@@ -292,6 +320,8 @@ export default function ClientHome({ tools, categories }: ClientHomeProps) {
             <h2 className="text-xl font-extrabold tracking-tight text-foreground">
               {activeCategory === "all" 
                 ? "All Tools" 
+                : activeCategory === "favorites"
+                ? "Favorite Tools"
                 : categories.find(c => c.id === activeCategory)?.name || "Tools"}
             </h2>
             <span className="inline-flex items-center justify-center px-2 py-0.5 rounded-full bg-muted text-muted-foreground text-xs font-bold">
@@ -300,7 +330,7 @@ export default function ClientHome({ tools, categories }: ClientHomeProps) {
           </div>
 
           {/* Link to Dedicated Category Page */}
-          {activeCategory !== "all" && (
+          {activeCategory !== "all" && activeCategory !== "favorites" && (
             <Link
               href={`/category/${activeCategory}`}
               className={cn(

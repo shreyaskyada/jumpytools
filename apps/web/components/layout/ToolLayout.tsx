@@ -2,7 +2,7 @@
 
 import React, { ReactNode } from 'react';
 import Link from 'next/link';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Star } from 'lucide-react';
 import Container from './Container';
 import {
   Accordion,
@@ -13,6 +13,7 @@ import {
 import { tools } from '@/config/tools';
 import { categoryThemes, categories } from '@/config/categories';
 import { cn } from '@/lib/utils';
+import { useFavorites } from '@/hooks/useFavorites';
 
 export interface ToolMetadata {
   title: string;
@@ -42,6 +43,9 @@ export function ToolLayout({
   aboutParagraphs,
   children,
 }: ToolLayoutProps) {
+  const { isFavorite, toggleFavorite } = useFavorites();
+  const isFav = isFavorite(metadata.slug);
+
   const categoryInfo = categories.find((c) => c.id === metadata.category);
   const categoryName = categoryInfo ? categoryInfo.name : 'Utility';
 
@@ -80,9 +84,21 @@ export function ToolLayout({
           >
             {categoryName}
           </span>
-          <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
-            {metadata.title}
-          </h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-3xl md:text-4xl font-extrabold tracking-tight text-foreground">
+              {metadata.title}
+            </h1>
+            <button
+              onClick={() => toggleFavorite(metadata.slug)}
+              aria-label={isFav ? "Remove from favorites" : "Add to favorites"}
+              className={cn(
+                "flex h-9 w-9 items-center justify-center rounded-xl border border-border/80 bg-card hover:bg-muted text-muted-foreground/60 transition-all hover:text-amber-500 hover:scale-105 active:scale-95 cursor-pointer",
+                isFav && "text-amber-500 bg-amber-500/10 border-amber-500/20"
+              )}
+            >
+              <Star className={cn("h-5 w-5", isFav && "fill-amber-500")} />
+            </button>
+          </div>
           <p className="mt-2 text-muted-foreground text-base md:text-lg max-w-2xl">
             {metadata.description}
           </p>
