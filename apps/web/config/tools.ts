@@ -240,4 +240,13 @@ export const tools: Tool[] = [
     featured: true,
     fullWidth: false,
   },
+  {
+    slug: "love-calculator",
+    title: "Love Calculator",
+    description:
+      "Calculate love compatibility between two people based on their names. Get a deterministic score, match analysis, and compatibility breakdown instantly.",
+    category: "fun-games",
+    featured: true,
+    fullWidth: false,
+  },
 ];

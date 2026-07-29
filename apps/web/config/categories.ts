@@ -48,6 +48,12 @@ export const categories: Category[] = [
     description: "Handy generators and conversion utilities for everyday tasks.",
     icon: "Wrench",
   },
+  {
+    id: "fun-games",
+    name: "Fun & Games",
+    description: "Fun, entertainment, and relationship compatibility calculators.",
+    icon: "Heart",
+  },
 ];
 
 export interface CategoryTheme {
@@ -115,6 +121,14 @@ export const categoryThemes: Record<string, CategoryTheme> = {
     iconColor: "text-teal-500",
     borderHover: "group-hover:border-teal-500/30",
     accentColor: "teal"
+  },
+  "fun-games": {
+    color: "from-pink-500 to-rose-500",
+    bgGlow: "group-hover:shadow-[0_0_30px_rgba(244,63,94,0.08)] hover:border-pink-500/30",
+    iconBg: "bg-pink-500/10 dark:bg-pink-500/15 group-hover:bg-pink-500/20",
+    iconColor: "text-pink-500",
+    borderHover: "group-hover:border-pink-500/30",
+    accentColor: "pink"
   }
 };
 

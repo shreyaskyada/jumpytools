@@ -17,6 +17,7 @@ import {
   Image as ImageIcon,
   ArrowRight,
   Star,
+  Heart,
 } from "lucide-react";
 import ToolCard from "@/components/tools/ToolCard";
 import { useSearchParams } from "next/navigation";
@@ -37,6 +38,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Shield,
   Wrench,
   Image: ImageIcon,
+  Heart,
 };
 
 const pillActiveStyles: Record<string, string> = {
@@ -48,6 +50,7 @@ const pillActiveStyles: Record<string, string> = {
   "math-calc": "border-amber-500 bg-amber-500/10 text-amber-600 dark:text-amber-400 dark:bg-amber-500/15 shadow-[0_0_15px_rgba(245,158,11,0.12)]",
   "security-tools": "border-red-500 bg-red-500/10 text-red-600 dark:text-red-400 dark:bg-red-500/15 shadow-[0_0_15px_rgba(239,68,68,0.12)]",
   "utility-tools": "border-teal-500 bg-teal-500/10 text-teal-600 dark:text-teal-400 dark:bg-teal-500/15 shadow-[0_0_15px_rgba(20,184,166,0.12)]",
+  "fun-games": "border-pink-500 bg-pink-500/10 text-pink-600 dark:text-pink-400 dark:bg-pink-500/15 shadow-[0_0_15px_rgba(244,63,94,0.12)]",
 };
 
 // Extracted Search Input Component
