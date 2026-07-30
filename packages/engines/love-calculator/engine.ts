@@ -68,3 +68,4 @@ export function calculateLove(name1: string, name2: string): LoveResult {
     },
   };
 }
+

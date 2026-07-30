@@ -249,4 +249,13 @@ export const tools: Tool[] = [
     featured: true,
     fullWidth: false,
   },
+  {
+    slug: "flames-game",
+    title: "FLAMES Game",
+    description:
+      "Play the classic childhood FLAMES game online. Cancel common characters in your names to discover your future relationship status.",
+    category: "fun-games",
+    featured: true,
+    fullWidth: false,
+  },
 ];
