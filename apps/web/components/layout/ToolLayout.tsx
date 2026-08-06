@@ -62,8 +62,92 @@ export function ToolLayout({
     .filter((t) => t.category === metadata.category && t.slug !== metadata.slug)
     .slice(0, 3);
 
+  // WebApplication JSON-LD Schema
+  const webAppJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebApplication',
+    name: metadata.title,
+    description: metadata.description,
+    url: `https://jumpytools.app/tools/${metadata.slug}`,
+    applicationCategory: 'UtilityApplication',
+    operatingSystem: 'All',
+    browserRequirements: 'Requires JavaScript. Requires HTML5.',
+    featureList: [
+      'Client-side processing',
+      'Free to use',
+      'No registration required',
+      '100% Secure & Private',
+    ],
+    creator: {
+      '@type': 'Organization',
+      name: 'Jumpytools',
+      url: 'https://jumpytools.app',
+    },
+    offers: {
+      '@type': 'Offer',
+      price: '0',
+      priceCurrency: 'USD',
+    },
+  };
+
+  // BreadcrumbList JSON-LD Schema
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://jumpytools.app',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: categoryName,
+        item: `https://jumpytools.app/category/${metadata.category}`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: metadata.title,
+        item: `https://jumpytools.app/tools/${metadata.slug}`,
+      },
+    ],
+  };
+
+  // FAQPage JSON-LD Schema
+  const faqJsonLd = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
+  } : null;
+
   return (
     <div className="relative overflow-hidden flex-grow flex flex-col">
+      {/* Schema Markup Injection */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webAppJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {faqJsonLd && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      )}
+
       {/* Background Radial Glow Effect */}
       <div
         className={cn(
@@ -73,6 +157,21 @@ export function ToolLayout({
       />
 
       <Container className="py-10 flex-grow relative z-10">
+        {/* Breadcrumb Navigation UI */}
+        <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/80 mb-4 font-medium" aria-label="Breadcrumb">
+          <Link href="/" className="hover:text-foreground transition-colors">
+            Home
+          </Link>
+          <span className="text-muted-foreground/45">/</span>
+          <Link href={`/category/${metadata.category}`} className="hover:text-foreground transition-colors">
+            {categoryName}
+          </Link>
+          <span className="text-muted-foreground/45">/</span>
+          <span className="text-foreground font-semibold" aria-current="page">
+            {metadata.title}
+          </span>
+        </nav>
+
         {/* Hero Header */}
         <div className="mb-8">
           <span

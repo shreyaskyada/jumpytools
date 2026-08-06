@@ -1,12 +1,26 @@
-import React from 'react';
-import { ImageConverterTool } from '@/modules/tools/image-converter/ImageConverterTool';
 import { Metadata } from 'next';
+import { ImageConverterTool } from '@/modules/tools/image-converter/ImageConverterTool';
+import { TOOL_METADATA } from '@repo/engines/image-converter';
 
 export const metadata: Metadata = {
-  title: 'Image Converter | Jumpytools',
-  description: 'Convert images between JPEG, PNG, WebP, AVIF, GIF, BMP, and ICO formats client-side instantly with a live before-and-after preview.',
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function ImageConverterPage() {
+export default function Page() {
   return <ImageConverterTool />;
 }

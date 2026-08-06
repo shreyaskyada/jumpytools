@@ -1,10 +1,26 @@
+import { Metadata } from 'next';
 import { TimezoneConverterTool } from '@/modules/tools/timezone-converter/TimezoneConverterTool';
+import { TOOL_METADATA } from '@repo/engines/timezone-converter';
 
-export const metadata = {
-  title: 'Time Zone Converter - Jumpytools',
-  description: 'Convert dates and times across multiple world time zones, calculate timezone offsets, and plan meetings.',
+export const metadata: Metadata = {
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function TimezoneConverterPage() {
+export default function Page() {
   return <TimezoneConverterTool />;
 }

@@ -1,12 +1,26 @@
-import React from 'react';
-import { WordFrequencyAnalyzerTool } from '@/modules/tools/word-frequency-analyzer/WordFrequencyAnalyzerTool';
 import { Metadata } from 'next';
+import { WordFrequencyAnalyzerTool } from '@/modules/tools/word-frequency-analyzer/WordFrequencyAnalyzerTool';
+import { TOOL_METADATA } from '@repo/engines/word-frequency-analyzer';
 
 export const metadata: Metadata = {
-  title: 'Word Frequency Analyzer | Jumpytools',
-  description: 'Analyze text for keyword density, word frequencies, and find duplicate words instantly.',
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function WordFrequencyAnalyzerPage() {
+export default function Page() {
   return <WordFrequencyAnalyzerTool />;
 }

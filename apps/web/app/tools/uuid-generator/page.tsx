@@ -1,9 +1,24 @@
-import React from 'react';
+import { Metadata } from 'next';
 import { UuidGeneratorTool } from '@/modules/tools/uuid-generator/UuidGeneratorTool';
+import { TOOL_METADATA } from '@repo/engines/uuid-generator';
 
-export const metadata = {
-  title: 'UUID Generator - Jumpytools',
-  description: 'Generate unique UUID (v4 and v1) strings instantly. Configure count, casing, and hyphens with local browser execution.',
+export const metadata: Metadata = {
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
 export default function Page() {

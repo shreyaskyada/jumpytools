@@ -1,9 +1,24 @@
-import React from 'react';
+import { Metadata } from 'next';
 import { PasswordGeneratorTool } from '@/modules/tools/password-generator/PasswordGeneratorTool';
+import { TOOL_METADATA } from '@repo/engines/password-generator';
 
-export const metadata = {
-  title: 'Password Generator - Jumpytools',
-  description: 'Generate secure, random passwords with custom length, character sets, and a real-time strength indicator. 100% client-side.',
+export const metadata: Metadata = {
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
 export default function Page() {

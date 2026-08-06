@@ -1,12 +1,26 @@
-import React from 'react';
-import { ImageCompressorTool } from '@/modules/tools/image-compressor/ImageCompressorTool';
 import { Metadata } from 'next';
+import { ImageCompressorTool } from '@/modules/tools/image-compressor/ImageCompressorTool';
+import { TOOL_METADATA } from '@repo/engines/image-compressor';
 
 export const metadata: Metadata = {
-  title: 'Image Compressor | Jumpytools',
-  description: 'Reduce image file size by customizing quality, scaling dimensions, and converting formats client-side instantly.',
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function ImageCompressorPage() {
+export default function Page() {
   return <ImageCompressorTool />;
 }

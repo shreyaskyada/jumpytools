@@ -630,3 +630,51 @@ Before implementing a tool, always:
 3. Explain the planned file structure.
 4. Then generate the code.
 5. If the requested architecture conflicts with these rules, ask for confirmation instead of inventing a new structure.
+
+---
+
+# Google AdSense & SEO Optimization Rules
+
+To guarantee Google AdSense approval and avoid "Low Value Content" or "Thin Content" errors, every new tool must follow these rules:
+
+## 1. Web Page Metadata (`page.tsx`)
+The `page.tsx` of every tool under `apps/web/app/tools/<tool-name>/page.tsx` must export a highly optimized `Metadata` object:
+*   **Canonical URL:** Always include `alternates.canonical` pointing to the absolute tool URL.
+*   **Unique Keywords:** Title must follow the format `[Tool Name] Online - Free & Instant | Jumpytools`.
+*   **Social Graphs:** Configure Open Graph (OG) and Twitter Card tags matching the tool parameters.
+
+Example:
+```typescript
+export const metadata: Metadata = {
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
+};
+```
+
+## 2. Dynamic JSON-LD Schema (WebApplication, FAQ, Breadcrumbs)
+*   **Never** manually code `<script type="application/ld+json">` blocks inside a tool's `page.tsx` file.
+*   All structured markup is centralized inside the `ToolLayout` component. The tool's primary UI component must wrap its content inside `<ToolLayout>` and pass the necessary parameters (`metadata`, `faqs`, `aboutParagraphs`).
+*   `ToolLayout` automatically compiles and injects the `WebApplication`, `BreadcrumbList`, and `FAQPage` schemas into the header.
+
+## 3. Sufficient Helpful Content (Zero Thin Content)
+Every tool's `constants.ts` file in `packages/engines/<tool-name>/constants.ts` must contain extensive, high-quality, human-like descriptive text:
+*   **`TOOL_ABOUT`:** An array of at least 4-5 descriptive paragraphs (minimum 400+ words) covering how the tool works, the underlying technology, practical use cases, and client-side privacy.
+*   **`TOOL_FAQS`:** An array of at least 5-6 detailed, unique questions and answers covering common search intents.
+
+## 4. Visual Layout Elements
+*   **Breadcrumbs:** Always ensure the visual breadcrumb navigation (`Home / Category / Tool Title`) renders at the top of the workspace layout.
+*   **Heading Structure:** The page must contain exactly one `<h1>` (representing the tool title) followed by `<h2>` headers for the FAQ sections.

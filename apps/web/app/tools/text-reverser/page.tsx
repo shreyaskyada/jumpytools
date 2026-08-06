@@ -1,12 +1,26 @@
-import React from 'react';
-import { TextReverserTool } from '@/modules/tools/text-reverser/TextReverserTool';
 import { Metadata } from 'next';
+import { TextReverserTool } from '@/modules/tools/text-reverser/TextReverserTool';
+import { TOOL_METADATA } from '@repo/engines/text-reverser';
 
 export const metadata: Metadata = {
-  title: 'Text Reverser | Jumpytools',
-  description: 'Reverse text in multiple ways: flip upside down, reverse words, sentences, or individual characters.',
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function TextReverserPage() {
+export default function Page() {
   return <TextReverserTool />;
 }

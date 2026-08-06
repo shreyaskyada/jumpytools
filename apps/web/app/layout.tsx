@@ -18,8 +18,29 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Jumpytools - Free Online Developer and Content Tools",
+  metadataBase: new URL("https://jumpytools.app"),
+  title: {
+    default: "Jumpytools - Free Online Developer and Content Tools",
+    template: "%s | Jumpytools",
+  },
   description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://jumpytools.app",
+    siteName: "Jumpytools",
+    title: "Jumpytools - Free Online Developer and Content Tools",
+    description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Jumpytools - Free Online Developer and Content Tools",
+    description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  },
 };
 
 export default function RootLayout({

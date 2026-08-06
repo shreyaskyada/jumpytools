@@ -1,10 +1,26 @@
+import { Metadata } from 'next';
 import { UrlEncoderDecoderTool } from '@/modules/tools/url-encoder-decoder/UrlEncoderDecoderTool';
+import { TOOL_METADATA } from '@repo/engines/url-encoder-decoder';
 
-export const metadata = {
-  title: 'URL Encoder / Decoder - Jumpytools',
-  description: 'Encode or decode strings to make them URL-safe instantly.',
+export const metadata: Metadata = {
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function UrlEncoderDecoderPage() {
+export default function Page() {
   return <UrlEncoderDecoderTool />;
 }

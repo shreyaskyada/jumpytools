@@ -1,12 +1,26 @@
-import React from 'react';
-import { ListRandomizerTool } from '@/modules/tools/list-randomizer/ListRandomizerTool';
 import { Metadata } from 'next';
+import { ListRandomizerTool } from '@/modules/tools/list-randomizer/ListRandomizerTool';
+import { TOOL_METADATA } from '@repo/engines/list-randomizer';
 
 export const metadata: Metadata = {
-  title: 'List Randomizer | Jumpytools',
-  description: 'Shuffle and randomize lists instantly. Great for generating random selections or unbiased ordering.',
+  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+  description: TOOL_METADATA.description,
+  alternates: {
+    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+  },
+  openGraph: {
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
+    description: TOOL_METADATA.description,
+  },
 };
 
-export default function ListRandomizerPage() {
+export default function Page() {
   return <ListRandomizerTool />;
 }
