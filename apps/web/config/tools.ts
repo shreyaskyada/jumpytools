@@ -258,4 +258,13 @@ export const tools: Tool[] = [
     featured: true,
     fullWidth: false,
   },
+  {
+    slug: "delulu-meter",
+    title: "Delulu Meter",
+    description:
+      "Measure your delusion level instantly. Enter your relationship or life scenario, answer a few questions, and get a detailed breakdown of your reality gap.",
+    category: "fun-games",
+    featured: true,
+    fullWidth: false,
+  },
 ];
