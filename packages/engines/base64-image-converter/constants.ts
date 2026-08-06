@@ -24,14 +24,21 @@ export const TOOL_METADATA = {
 };
 
 export const TOOL_ABOUT = [
-  'Base64 Image Converter is a client-side developer utility for converting image and video assets to and from text-encoded Base64 representations.',
-  'Converting images and video files to Base64 creates a Data URI that can be embedded directly into source files (HTML, CSS, JSON). This technique loads media inline, removing the need for external server requests.',
-  'The decoder accepts Data URLs containing standard metadata headers, as well as plain Base64 strings where it auto-detects standard mime formats (PNG, JPEG, GIF, WebP, BMP, MP4, WebM, PDF).',
+  'The Base64 Image Converter is a premium, client-side utility designed to encode binary media files into text-based Base64 representations and vice versa. By translating binary streams into safe ASCII characters, Base64 enables developers to transmit and embed media assets directly inside source code files, configuration payloads, and style templates.',
+  'Understanding Base64 Encoding and Data URIs:',
+  'Base64 is a binary-to-text encoding scheme that represents binary data in an ASCII string format by translating it into a radix-64 representation. When applied to web assets, this encoding produces a "Data URL" or "Data URI" structured as `data:[mediatype];base64,[data]`. When browsers parse this string, they reconstruct the raw binary file context and render the image or video directly, without making a server request.',
+  'Inline Media Embedding trade-offs:',
+  '• Pros: Eliminates additional HTTP round-trip requests for small assets, helping load minor icons, logo files, or styling images instantly. Ensures the page is self-contained and loads as a single document.',
+  '• Cons: Base64 encoding increases file payload sizes by approximately 33% compared to raw binary storage. Embedding large media assets (like high-res banners or videos) inline can block initial browser rendering and inflate JavaScript/CSS bundle sizes significantly.',
+  'Advanced Decoder Features:',
+  'The Decoder tab accepts raw Base64 strings as well as fully qualified Data URLs. If standard header tags are missing, our engine parses the leading magic numbers of the binary header stream to automatically detect the correct format (e.g. PNG, JPEG, GIF, WebP, BMP, PDF, MP4, WebM, or OGG). Users can override the file extension manual-check dropdown before executing downloads.',
+  'Privacy and Local Sandbox Execution:',
+  'Security is vital when converting custom files or private documents. Many web tools require sending your raw files to cloud API servers for encoding/decoding. Jumpytools executes the entire encoding logic locally using the browser\'s native `FileReader` API. Your files are processed inside your computer\'s local memory, guaranteeing that no personal documents, mockups, or videos are ever uploaded, tracked, or leaked.'
 ];
 
 export const TOOL_FAQS = [
   {
-    question: 'What is Base64 Image Converter?',
+    question: 'What is a Base64 Image Converter?',
     answer: 'It is a 2-in-1 media utility that allows you to: 1) Encode images and video clips to Base64 strings or Data URIs, and 2) Decode Base64 data blocks back to play/view them inside the browser and download them as files.',
   },
   {
@@ -45,5 +52,13 @@ export const TOOL_FAQS = [
   {
     question: 'Are there file size guidelines for browser processing?',
     answer: 'All processing happens 100% offline inside your browser. We recommend uploading files under 10MB for images and under 30MB for video clips to ensure fast response times and prevent browser tab freezes.',
+  },
+  {
+    question: 'Why does Base64 make my files 33% larger?',
+    answer: 'Base64 encoding uses 6 bits to represent each character, whereas raw binary data uses 8 bits per byte. This translation means that for every 3 bytes of raw binary data, Base64 requires 4 ASCII characters to represent it, resulting in a consistent size overhead expansion of roughly 33%.',
+  },
+  {
+    question: 'When is it appropriate to embed Base64 media?',
+    answer: 'It is best practice to use Base64 inline embedding only for tiny icons, vector shapes, or small CSS background assets under 5KB. For larger imagery, standard file referencing (linking to an external asset URL) is preferred because it allows browser cache storage to cache the media files separately.',
   },
 ];

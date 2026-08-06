@@ -6,6 +6,19 @@ export const TOOL_METADATA = {
   fullWidth: true,
 };
 
+export const TOOL_ABOUT = [
+  'The JWT Decoder & Signer Verifier is a premium, client-side developer utility built to decode, analyze, and cryptographically verify JSON Web Tokens (JWT). Built to run completely inside your local browser memory space, the tool allows developers to inspect encoded token headers and payload claims, verify signature validity using public keys or shared secrets, and debug authorization flows instantly.',
+  'What is a JSON Web Token (JWT)?',
+  'Defined by RFC 7519, a JSON Web Token is an open standard that establishes a compact, URL-safe format for securely transmitting structured information between systems as a JSON object. Because this data is digitally signed by the issuer, the recipient can verify the token\'s authenticity and guarantee that the contents have not been tampered with during transit. JWTs are the industry standard for state-less authentication systems, OAuth 2.0 authorization frameworks, and single sign-on (SSO) portals.',
+  'Deconstructing the JWT Structure:',
+  'A JWT is represented as a single string divided into three distinct segments separated by periods (`.`):',
+  '• Header: Specifies the token metadata, including the token type (typically "JWT") and the cryptographic signing algorithm utilized (e.g. HS256, RS256, or ES256).',
+  '• Payload: Contains the JSON-based claims. Claims are statements about an entity (such as user permissions, identity parameters, or issuer metadata). Registered claims include standard fields like "iss" (issuer), "sub" (subject), "aud" (audience), and "exp" (expiration time).',
+  '• Signature: Computed by taking the base64url-encoded header and payload, combining them with a secret key or private key, and running the specified cryptographic signing algorithm. This verifies that the message has not been altered.',
+  'Zero-Server Privacy and Security:',
+  'Debugging JWTs often requires pasting actual authorization tokens containing sensitive user emails, roles, and signature secrets. Pasting these payloads into online tools that process data on remote servers risks exposing your system to security breaches or logging databases. Jumpytools decodes and validates all tokens locally using the browser\'s native Web Crypto API. Your keys, tokens, and payload variables are never sent over the network, ensuring 100% security.'
+];
+
 export const TOOL_FAQS = [
   {
     question: 'Is my JWT token data safe on this site?',
@@ -23,26 +36,17 @@ export const TOOL_FAQS = [
     question: 'Why does the tool show my token is expired?',
     answer: 'A JWT often contains an expiration claim (\'exp\') which is a Unix timestamp. The tool compares this timestamp with your computer\'s current time to determine if the token has expired and displays how much time remains or has elapsed since expiration.',
   },
-];
-
-export const TOOL_ABOUT = [
-  'JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object. This information can be verified and trusted because it is digitally signed.',
-  'Understanding JWT Structure:',
-  '• Header: Typically consists of two parts: the type of the token, which is JWT, and the signing algorithm being used, such as HMAC SHA256 (HS256) or RSA SHA256 (RS256).',
-  '• Payload: Contains the claims. Claims are statements about an entity (typically, the user) and additional data.',
-  '• Signature: To create the signature part you must take the encoded header, the encoded payload, a secret (or public/private key), the algorithm specified in the header, and sign that.',
-  'Standard Registered Claims:',
-  '• iss (Issuer): Identifies the principal that issued the JWT.',
-  '• sub (Subject): Identifies the principal that is the subject of the JWT (e.g. user ID).',
-  '• aud (Audience): Identifies the recipients that the JWT is intended for.',
-  '• exp (Expiration Time): The time on or after which the JWT must not be accepted.',
-  '• nbf (Not Before): The time before which the JWT must not be accepted.',
-  '• iat (Issued At): The time at which the JWT was issued.',
-  '• jti (JWT ID): A unique identifier for the token (can prevent replay attacks).',
+  {
+    question: 'What is the difference between symmetric and asymmetric signing?',
+    answer: 'Symmetric signing (like HS256) uses a single shared secret key to both create and verify the signature; both the token issuer and verifier must share this secret. Asymmetric signing (like RS256 or ES256) uses a private key to create the signature and a corresponding public key to verify it. This is more secure because the verifier only needs the public key and cannot generate new tokens.',
+  },
+  {
+    question: 'Why is the "none" algorithm considered dangerous in JWTs?',
+    answer: 'The "none" algorithm specifies that the token is unsigned and has no signature segment. In production, accepting "none" algorithm tokens is a severe vulnerability, as attackers can easily modify the payload claims (such as changing their user role to "admin") and bypass authentication checks.',
+  },
 ];
 
 export const CLAIM_DESCRIPTIONS: Record<string, string> = {
-  // Header
   alg: 'Algorithm: The cryptographic algorithm used to secure the token (e.g. HS256, RS256).',
   typ: 'Type: The type of the token (typically JWT).',
   kid: 'Key ID: A hint indicating which key was used to secure the JWT.',
@@ -52,8 +56,6 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   x5c: 'X.509 Certificate Chain: The X.509 public key certificate or certificate chain.',
   x5t: 'X.509 Certificate SHA-1 Thumbprint: SHA-1 thumbprint of the X.509 certificate.',
   crit: 'Critical: An array of header names that the client must recognize and process.',
-  
-  // Registered Payload Claims
   iss: 'Issuer: Identifies the principal that issued the JWT.',
   sub: 'Subject: Identifies the principal that is the subject of the JWT (e.g. user ID).',
   aud: 'Audience: Identifies the recipients that the JWT is intended for.',
@@ -61,8 +63,6 @@ export const CLAIM_DESCRIPTIONS: Record<string, string> = {
   nbf: 'Not Before: The time before which the JWT must not be accepted.',
   iat: 'Issued At: The time at which the JWT was issued.',
   jti: 'JWT ID: A unique identifier for the token (can prevent replay attacks).',
-  
-  // Common Private/Public Claims
   name: 'Name: The subject\'s full name.',
   given_name: 'Given Name: The subject\'s first or given name.',
   family_name: 'Family Name: The subject\'s surname or family name.',

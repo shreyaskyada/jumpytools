@@ -112,19 +112,23 @@ export const TOOL_FAQS = [
     question: 'What format do standard claims require?',
     answer: 'Standard claims like \'exp\' (expiration), \'iat\' (issued at), and \'nbf\' (not before) are defined as numbers containing a Unix timestamp (seconds since Unix Epoch, January 1, 1970). Our helper builders handle this conversion automatically.',
   },
+  {
+    question: 'Can I generate customized claims outside standard fields?',
+    answer: 'Yes! The generator includes a Raw JSON Payload Editor. This allows you to construct any key-value schemas required by your application context (such as roles, user flags, or database subkeys) directly inside the JSON payload editor.',
+  },
+  {
+    question: 'Should I use these generated tokens in production environments?',
+    answer: 'While the generated tokens are cryptographically valid and comply with RFC 7519 specifications, this generator is intended as a testing utility. For production systems, you should always generate tokens programmatically on your secure server backend using certified library routines.',
+  },
 ];
 
 export const TOOL_ABOUT = [
-  'JWT Generator & Signer allows you to craft, configure, and cryptographically sign JSON Web Tokens entirely in your browser. Zero server-side processing. Your private keys and secrets never leave your machine.',
-  'How It Works:',
-  '• Configure the signing algorithm (HMAC, RSA, or ECDSA) and provide the corresponding key or secret.',
-  '• Use the Payload Claim Builder to set standard claims like Subject, Issuer, Audience, and Expiration without writing JSON by hand.',
-  '• Switch to the Raw JSON editors to have full control over the Header and Payload contents.',
-  '• The token is signed live as you type — paste the result directly into your app or verify it with the JWT Decoder tool.',
-  'Supported Algorithms:',
-  '• HS256, HS384, HS512 — HMAC-SHA symmetric signing. Use a shared secret string.',
-  '• RS256, RS384, RS512 — RSA-PKCS1-v1.5 asymmetric signing. Use a PKCS#8 private key.',
-  '• PS256, PS384, PS512 — RSA-PSS asymmetric signing. Use a PKCS#8 private key.',
-  '• ES256, ES384, ES512 — ECDSA asymmetric signing. Use a PKCS#8 EC private key.',
-  '• none — Creates an unsigned token for testing (should never be used in production).',
+  'The JWT Generator & Signer is an interactive developer tool designed to generate, configure, and sign JSON Web Tokens (JWT) client-side. Operating entirely within your browser environment, it provides an efficient workspace to build mock tokens for local testing, inspect claims layouts, and audit cryptographic signature validation.',
+  'Generating and Structuring Custom Signatures:',
+  'Creating a signed token requires inputting header specifications, configuring claim variables, and signing the payload using one of our supported algorithm options:',
+  '• HS256/384/512 (Symmetric HMAC): Uses a single text-based shared secret key to secure the token. Perfect for quick mockups and API testing.',
+  '• RS256/384/512 (Asymmetric RSA): Uses a PKCS#8 formatted private key to sign the token. The signature must start with the standard PEM header (`-----BEGIN PRIVATE KEY-----`).',
+  '• ES256/384/512 (Asymmetric ECDSA): Uses Elliptic Curve cryptography key pairs to create lightweight signatures.',
+  'Zero-Server Input Privacy:',
+  'Pasting private RSA keys or signing secrets into online forms is a significant security risk if the processing occurs remotely. Jumpytools mitigates this by running the entire cryptographic engine client-side. Your private keys, payload claims, and computed tokens are never sent over the network, processed by remote services, or stored in databases, ensuring 100% confidentiality during key testing.'
 ];

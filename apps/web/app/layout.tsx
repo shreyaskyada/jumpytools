@@ -4,6 +4,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/Header";
 import Subheader from "@/components/layout/Subheader";
 import Footer from "@/components/layout/Footer";
+import CookieConsent from "@/components/layout/CookieConsent";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,8 +40,10 @@ export default function RootLayout({
           <Subheader />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
+          <CookieConsent />
         </ThemeProvider>
       </body>
     </html>
   );
 }
+

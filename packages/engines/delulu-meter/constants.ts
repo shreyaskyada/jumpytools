@@ -69,10 +69,28 @@ export const TOOL_FAQS = [
     answer:
       'Yes, 100%. All processing is done locally inside your browser. No data is sent to a server or stored anywhere.',
   },
+  {
+    question: 'What is the origin of the term "Delulu"?',
+    answer:
+      'The slang term "delulu" originated in the K-Pop fan community around 2014 to describe fans who held delusional beliefs about their relationship with K-Pop idols. It has since entered mainstream internet slang, especially on TikTok and Twitter/X.',
+  },
+  {
+    question: 'Is "delulu" always a bad thing?',
+    answer:
+      'No! While delusion has clinical and negative connotations in psychology, the internet phrase "delulu is the solulu" suggests that a healthy dose of blind optimism, self-belief, and wishful thinking can help boost confidence and manifest career or personal goals.',
+  },
+  {
+    question: 'How do the scoring tiers work on the Delulu Meter?',
+    answer:
+      'Scores below 30% represent a realistic outlook. Scores between 30% and 60% indicate mild, harmless daydreams. Scores above 60% transition into high delusion, prompting the engine to generate humorous roasts and reality checks.',
+  },
 ];
 
 export const TOOL_ABOUT = [
-  'The Delulu Meter is an interactive calculator built for fun, allowing you to gauge your levels of optimism, denial, and obsession.',
-  'By inputting any scenario or thought and checking off various reality parameters, you can view your diagnostic delusion score, read custom roasts, and see a breakdown across parameters like Reality Gap and Denial.',
-  'Remember, being a little delulu is sometimes the only solulu, but this tool is purely for entertainment purposes!',
+  'The Delulu Meter is an interactive, entertaining diagnostic utility built to measure your levels of internet-slang delusion ("delulu"). It acts as a playful self-assessment tool, analyzing life or relationship scenarios against a set of comical checklist parameters.',
+  'By entering any scenario or thought—such as a crush interaction, career aspiration, or daily overthinking—and selecting checkboxes that represent common delusional habits, the engine calculates a diagnostic percentage. The result includes a custom reality gap score, denial level, obsession scale, and a healthy dose of hope, alongside a lighthearted roast.',
+  'Technically, the application combines deterministic input hashing with weighted question coefficients. The text of the scenario you enter is mapped to a numeric hash code, which forms the individual baseline of the calculation. Selecting checkboxes then adds specific weights to determine the final score and breakdown.',
+  'Privacy is a fundamental cornerstone of Jumpytools. The Delulu Meter operates entirely within the user\'s local web browser environment. Neither your typed scenario nor the checkboxes you select are transmitted to external databases or analytics platforms, ensuring your secret daydreams remain entirely confidential.',
+  'Remember, the internet coined the phrase "delulu is the solulu" as a humorous testament to self-confidence. This tool is designed purely for fun and entertainment, and should not be used as a substitute for real-world psychological evaluation or relationship advice.',
 ];
+
