@@ -5,7 +5,6 @@ import Header from "@/components/layout/Header";
 import Subheader from "@/components/layout/Subheader";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/layout/CookieConsent";
-import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -52,10 +51,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
-        <Script
+        <script
           src="https://analytics.ahrefs.com/analytics.js"
           data-key="TIOVxT3z+aML5HFd7XJTdg"
-          strategy="afterInteractive"
+          async
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">
