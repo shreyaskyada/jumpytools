@@ -3,21 +3,31 @@ import { JwtDecoderTool } from '@/modules/tools/jwt-decoder/JwtDecoderTool';
 import { TOOL_METADATA } from '@repo/engines/jwt-decoder';
 
 export const metadata: Metadata = {
-  title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
-  description: TOOL_METADATA.description,
+  title: `Token Decoder Online - Decode & Verify JWT Tokens | Jumpytools`,
+  description: `Free online JWT Token Decoder utility. Decode, inspect, and verify JSON Web Tokens (JWT) and bearer authorization tokens client-side instantly.`,
+  keywords: [
+    'token decoder',
+    'jwt token decoder',
+    'jumpytools token decoder',
+    'decode token online',
+    'jwt decoder',
+    'jwt verifier',
+    'decode json web token',
+    'bearer token decoder',
+  ],
   alternates: {
     canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
   },
   openGraph: {
-    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
-    description: TOOL_METADATA.description,
+    title: `Token Decoder Online - Decode & Verify JWT Tokens | Jumpytools`,
+    description: `Free online JWT Token Decoder utility. Decode, inspect, and verify JSON Web Tokens (JWT) and bearer authorization tokens client-side instantly.`,
     url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
-    description: TOOL_METADATA.description,
+    title: `Token Decoder Online - Decode & Verify JWT Tokens | Jumpytools`,
+    description: `Free online JWT Token Decoder utility. Decode, inspect, and verify JSON Web Tokens (JWT) and bearer authorization tokens client-side instantly.`,
   },
 };
 

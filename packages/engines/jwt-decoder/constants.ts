@@ -1,6 +1,6 @@
 export const TOOL_METADATA = {
-  title: 'JWT Decoder & Signer Verifier',
-  description: 'Decode, inspect, and verify JSON Web Tokens (JWT) client-side. Parse headers, payload claims, and verify signatures for HS256, RS256, and ES256.',
+  title: 'JWT Token Decoder & Verifier',
+  description: 'Decode, inspect, and verify JSON Web Tokens (JWT) & bearer security tokens client-side. Parse headers, payload claims, and verify signatures for HS256, RS256, and ES256.',
   slug: 'jwt-decoder',
   category: 'developer-tools',
   fullWidth: true,

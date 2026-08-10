@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
+import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
 import Header from "@/components/layout/Header";
 import Subheader from "@/components/layout/Subheader";
@@ -51,16 +52,11 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              var ahrefs_analytics_script = document.createElement('script');
-              ahrefs_analytics_script.async = true;
-              ahrefs_analytics_script.src = 'https://analytics.ahrefs.com/analytics.js';
-              ahrefs_analytics_script.setAttribute('data-key', 'TIOVxT3z+aML5HFd7XJTdg');
-              document.getElementsByTagName('head')[0].appendChild(ahrefs_analytics_script);
-            `
-          }}
+        <link rel="preconnect" href="https://analytics.ahrefs.com" />
+        <Script
+          src="https://analytics.ahrefs.com/analytics.js"
+          data-key="TIOVxT3z+aML5HFd7XJTdg"
+          strategy="lazyOnload"
         />
       </head>
       <body className="min-h-full flex flex-col bg-background text-foreground">

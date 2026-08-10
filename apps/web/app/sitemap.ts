@@ -3,7 +3,7 @@ import { tools } from '@/config/tools';
 import { categories } from '@/config/categories';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://jumpytools.app';
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jumpytools.com';
 
   // Base pages
   const staticPages = [
