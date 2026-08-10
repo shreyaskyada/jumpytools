@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { Base64ImageConverterState } from './types';
 import { MIME_EXTENSIONS } from './constants';

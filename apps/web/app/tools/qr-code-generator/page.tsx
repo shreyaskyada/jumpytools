@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { QrCodeGeneratorTool } from '@/modules/tools/qr-code-generator/QrCodeGeneratorTool';
+import { QRCodeGeneratorTool } from '@/modules/tools/qr-code-generator/QRCodeGeneratorTool';
 import { TOOL_METADATA } from '@repo/engines/qr-code-generator';
 
 export const metadata: Metadata = {
@@ -22,5 +22,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <QrCodeGeneratorTool />;
+  return <QRCodeGeneratorTool />;
 }

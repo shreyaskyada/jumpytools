@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer, useCallback } from 'react';
 import { UuidGeneratorState, UuidGeneratorAction, UuidVersion } from './types';
 import { DEFAULT_QUANTITY } from './constants';

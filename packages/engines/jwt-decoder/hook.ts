@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer, useCallback, useEffect, useMemo, useRef } from 'react';
 import { JwtDecoderState, JwtDecoderAction } from './types';
 import { parseJwt, verifySignature, generateSampleJWT, base64UrlDecode } from './engine';

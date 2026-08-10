@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { LoremIpsumGeneratorState } from './types';
 import { generateLoremText } from './engine';

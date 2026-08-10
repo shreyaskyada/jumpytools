@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer, useCallback, useEffect } from 'react';
 import { JwtGeneratorState, JwtGeneratorAction } from './types';
 import { signJWT } from './engine';

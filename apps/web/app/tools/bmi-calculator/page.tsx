@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { BmiCalculatorTool } from '@/modules/tools/bmi-calculator/BmiCalculatorTool';
+import { BMICalculatorTool } from '@/modules/tools/bmi-calculator/BMICalculatorTool';
 import { TOOL_METADATA } from '@repo/engines/bmi-calculator';
 
 export const metadata: Metadata = {
@@ -22,5 +22,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <BmiCalculatorTool />;
+  return <BMICalculatorTool />;
 }

@@ -88,22 +88,23 @@ export default function Header() {
         {/* Actions */}
         <div className="flex items-center gap-3 sm:gap-4">
           {/* Theme Toggle */}
-          {mounted && (
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              title="Toggle Theme"
-              className="rounded-lg"
-            >
-              {theme === "dark" ? (
-                <Sun className="h-5 w-5 text-yellow-500" />
-              ) : (
-                <Moon className="h-5 w-5 text-indigo-500" />
-              )}
-              <span className="sr-only">Toggle theme</span>
-            </Button>
-          )}
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            title="Toggle Theme"
+            className="rounded-lg"
+            disabled={!mounted}
+          >
+            {!mounted ? (
+              <div className="h-5 w-5 animate-pulse rounded-full bg-muted-foreground/20" />
+            ) : theme === "dark" ? (
+              <Sun className="h-5 w-5 text-yellow-500" />
+            ) : (
+              <Moon className="h-5 w-5 text-indigo-500" />
+            )}
+            <span className="sr-only">Toggle theme</span>
+          </Button>
 
           {/* Sparkles / Featured badge */}
           <div className="hidden sm:flex items-center gap-1 rounded-full border border-primary/20 bg-primary/5 px-3 py-1 text-xs font-medium text-primary">

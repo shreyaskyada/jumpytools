@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { TimezoneConverterState, MeetingSlot } from './types';
 import { getHourInTz, formatTimeTz } from './engine';

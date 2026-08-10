@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer, useCallback, useEffect } from 'react';
 import { PasswordGeneratorState, PasswordGeneratorAction } from './types';
 import { DEFAULT_LENGTH } from './constants';

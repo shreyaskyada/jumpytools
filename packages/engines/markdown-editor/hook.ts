@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, useMemo } from 'react';
 import { parseMarkdownToHtml } from './engine';
 import { SAMPLE_TEXT } from './constants';

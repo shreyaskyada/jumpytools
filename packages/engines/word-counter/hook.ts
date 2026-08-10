@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, useMemo } from 'react';
 import { WordCounterState } from './types';
 import { SAMPLE_TEXT } from './constants';

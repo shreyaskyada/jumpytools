@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useCallback, useMemo } from 'react';
 import { generateRandomNumbers } from './engine';
 import { SortOrder, NumberDelimiter } from './types';

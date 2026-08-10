@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { UrlEncoderDecoderState } from './types';
 import { safeUrlEncode, safeUrlDecode } from './engine';

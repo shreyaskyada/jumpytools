@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback } from 'react';
 import { TextDiffState } from './types';
 import { computeDiff } from './engine';

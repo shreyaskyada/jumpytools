@@ -1,3 +1,5 @@
+'use client';
+
 import { useState, useEffect, useCallback, useMemo } from 'react';
 import { TimestampConverterState, EpochDetails, DateToEpochDetails } from './types';
 import { getRelativeTime, getLocalDateTimeString } from './engine';

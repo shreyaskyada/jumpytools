@@ -1,3 +1,5 @@
+'use client';
+
 import { useReducer, useCallback, useEffect } from 'react';
 import { JsonFormatterState, JsonFormatterAction } from './types';
 import { prettifyJson, minifyJson, parseJsonError, parseJsonSafely, getJsonStats } from './engine';
