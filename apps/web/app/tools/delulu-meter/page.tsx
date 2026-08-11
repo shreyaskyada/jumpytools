@@ -1,17 +1,18 @@
 import { Metadata } from 'next';
 import { DeluluMeterTool } from '@/modules/tools/delulu-meter/DeluluMeterTool';
 import { TOOL_METADATA } from '@repo/engines/delulu-meter';
+import { SITE_URL } from '@/config/site';
 
 export const metadata: Metadata = {
   title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
   description: TOOL_METADATA.description,
   alternates: {
-    canonical: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    canonical: `${SITE_URL}/tools/${TOOL_METADATA.slug}`,
   },
   openGraph: {
     title: `${TOOL_METADATA.title} Online - Free & Instant | Jumpytools`,
     description: TOOL_METADATA.description,
-    url: `https://jumpytools.app/tools/${TOOL_METADATA.slug}`,
+    url: `${SITE_URL}/tools/${TOOL_METADATA.slug}`,
     type: 'website',
   },
   twitter: {

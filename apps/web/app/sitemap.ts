@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next';
 import { tools } from '@/config/tools';
 import { categories } from '@/config/categories';
+import { SITE_URL } from '@/config/site';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.jumpytools.com';
+  const baseUrl = SITE_URL;
 
   // Base pages
   const staticPages = [

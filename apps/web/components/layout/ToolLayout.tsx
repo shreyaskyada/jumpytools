@@ -14,6 +14,7 @@ import { tools } from '@/config/tools';
 import { categoryThemes, categories } from '@/config/categories';
 import { cn } from '@/lib/utils';
 import { useFavorites } from '@/hooks/useFavorites';
+import { SITE_URL } from '@/config/site';
 
 export interface ToolMetadata {
   title: string;
@@ -68,7 +69,7 @@ export function ToolLayout({
     '@type': 'WebApplication',
     name: metadata.title,
     description: metadata.description,
-    url: `https://jumpytools.app/tools/${metadata.slug}`,
+    url: `${SITE_URL}/tools/${metadata.slug}`,
     applicationCategory: 'UtilityApplication',
     operatingSystem: 'All',
     browserRequirements: 'Requires JavaScript. Requires HTML5.',
@@ -81,7 +82,7 @@ export function ToolLayout({
     creator: {
       '@type': 'Organization',
       name: 'Jumpytools',
-      url: 'https://jumpytools.app',
+      url: SITE_URL,
     },
     offers: {
       '@type': 'Offer',
@@ -99,19 +100,19 @@ export function ToolLayout({
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://jumpytools.app',
+        item: SITE_URL,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: categoryName,
-        item: `https://jumpytools.app/category/${metadata.category}`,
+        item: `${SITE_URL}/category/${metadata.category}`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: metadata.title,
-        item: `https://jumpytools.app/tools/${metadata.slug}`,
+        item: `${SITE_URL}/tools/${metadata.slug}`,
       },
     ],
   };

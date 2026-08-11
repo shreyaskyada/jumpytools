@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Subheader from "@/components/layout/Subheader";
 import Footer from "@/components/layout/Footer";
 import CookieConsent from "@/components/layout/CookieConsent";
+import { SITE_URL } from "@/config/site";
 import "./globals.css";
 
 const inter = Inter({
@@ -19,7 +20,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://jumpytools.app"),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "Jumpytools - Free Online Developer and Content Tools",
     template: "%s | Jumpytools",
@@ -32,7 +33,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://jumpytools.app",
+    url: SITE_URL,
     siteName: "Jumpytools",
     title: "Jumpytools - Free Online Developer and Content Tools",
     description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",

@@ -33,10 +33,10 @@ export default function ContactPage() {
               For general inquiries, business conversations, or feedback, email us directly at:
             </p>
             <a
-              href="mailto:support@jumpytools.app"
+              href="mailto:support@jumpytools.com"
               className="text-sm font-bold text-primary hover:underline mt-1"
             >
-              support@jumpytools.app
+              support@jumpytools.com
             </a>
           </div>
 

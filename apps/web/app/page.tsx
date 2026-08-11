@@ -4,6 +4,7 @@ import ClientHome from "./client-home";
 import Container from "@/components/layout/Container";
 import { tools } from "@/config/tools";
 import { categories } from "@/config/categories";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Jumpytools - Free Online Developer and Content Tools",
@@ -61,13 +62,13 @@ export default function HomePage() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Jumpytools",
-    url: "https://jumpytools.app",
+    url: SITE_URL,
     description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://jumpytools.app/tools/{search_term_string}"
+        urlTemplate: `${SITE_URL}/tools/{search_term_string}`
       },
       "query-input": "required name=search_term_string"
     }
