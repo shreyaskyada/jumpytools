@@ -21,20 +21,36 @@ export default async function DynamicToolPage({ params }: DynamicToolPageProps) 
 
   // 2. Search query match based on terms
   const searchTerms = cleanSlug.replace(/-/g, ' ');
-  const termMatches = tools.filter((t) => {
-    const title = t.title.toLowerCase();
-    const desc = t.description.toLowerCase();
-    const slug = t.slug.toLowerCase();
+  const terms = searchTerms.split(' ').filter((term) => term.length > 2);
 
-    return (
-      title.includes(searchTerms) ||
-      desc.includes(searchTerms) ||
-      searchTerms.split(' ').some((term) => term.length > 2 && (title.includes(term) || slug.includes(term)))
-    );
-  });
+  const termMatches = tools
+    .map((t) => {
+      const title = t.title.toLowerCase();
+      const desc = t.description.toLowerCase();
+      const slug = t.slug.toLowerCase();
 
-  if (termMatches.length === 1 && termMatches[0]) {
-    redirect(`/tools/${termMatches[0].slug}`, RedirectType.replace);
+      // Score: higher = better match
+      let score = 0;
+
+      // Full phrase match in title/desc/slug is strongest
+      if (title.includes(searchTerms)) score += 10;
+      if (desc.includes(searchTerms)) score += 5;
+      if (slug.includes(searchTerms)) score += 8;
+
+      // Individual term matches
+      for (const term of terms) {
+        if (title.includes(term)) score += 3;
+        if (slug.includes(term)) score += 3;
+        if (desc.includes(term)) score += 1;
+      }
+
+      return { tool: t, score };
+    })
+    .filter((m) => m.score > 0)
+    .sort((a, b) => b.score - a.score);
+
+  if (termMatches.length > 0 && termMatches[0]) {
+    redirect(`/tools/${termMatches[0].tool.slug}`, RedirectType.replace);
   }
 
   // 3. Fallback: Redirect to home page with search query populated
