@@ -1,401 +1,160 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
+    // Root-level short aliases only.
+    // All /tools/{any-variation} URLs are handled automatically by the
+    // smart word-matching engine in app/tools/[slug]/page.tsx — no need
+    // to list them here. Only add root-level shortcuts (without /tools/ prefix)
+    // for common short URLs people might type directly.
     const aliasMap = [
       // JWT Decoder
       {
-        sources: [
-          '/jwt-decoder',
-          '/jwt-token',
-          '/jwt',
-          '/jwt-tokens',
-          '/jwt-token-decoder',
-          '/jwt-parser',
-          '/jwt-debugger',
-          '/jwt-verifier',
-          '/jwt-validator',
-          '/jwt-checker',
-          '/jwt-inspector',
-          '/jwt-decode',
-          '/token-decoder',
-          '/token-parser',
-          '/decode-jwt',
-          '/decode-token',
-          '/bearer-token-decoder',
-          '/tools/jwt-token',
-          '/tools/jwt',
-          '/tools/jwt-tokens',
-          '/tools/jwt-token-decoder',
-          '/tools/jwt-parser',
-          '/tools/jwt-debugger',
-          '/tools/jwt-verifier',
-          '/tools/jwt-validator',
-          '/tools/jwt-decode',
-          '/tools/token-decoder',
-          '/tools/token-parser',
-          '/tools/decode-jwt',
-          '/tools/decode-token',
-          '/tools/bearer-token-decoder',
-        ],
+        sources: ['/jwt', '/jwt-decoder', '/jwt-decode', '/jwt-token', '/decode-jwt', '/token-decoder'],
         destination: '/tools/jwt-decoder',
       },
       // JWT Generator
       {
-        sources: [
-          '/jwt-generator',
-          '/jwt-signer',
-          '/jwt-token-generator',
-          '/generate-jwt',
-          '/create-jwt',
-          '/tools/jwt-signer',
-          '/tools/jwt-token-generator',
-          '/tools/generate-jwt',
-          '/tools/create-jwt',
-        ],
+        sources: ['/jwt-generator', '/jwt-signer', '/create-jwt', '/generate-jwt'],
         destination: '/tools/jwt-generator',
       },
       // JSON Formatter
       {
-        sources: [
-          '/json-formatter',
-          '/json',
-          '/json-validator',
-          '/json-prettifier',
-          '/json-parser',
-          '/tools/json',
-          '/tools/json-validator',
-          '/tools/json-prettifier',
-          '/tools/json-parser',
-        ],
+        sources: ['/json', '/json-formatter', '/json-validator', '/json-parser', '/json-prettifier'],
         destination: '/tools/json-formatter',
       },
       // UUID Generator
       {
-        sources: [
-          '/uuid-generator',
-          '/uuid',
-          '/guid',
-          '/guid-generator',
-          '/tools/uuid',
-          '/tools/guid',
-          '/tools/guid-generator',
-        ],
+        sources: ['/uuid', '/guid', '/uuid-generator', '/guid-generator'],
         destination: '/tools/uuid-generator',
       },
       // Base64 Image Converter
       {
-        sources: [
-          '/base64-image-converter',
-          '/base64',
-          '/base64-converter',
-          '/base64-image',
-          '/image-to-base64',
-          '/tools/base64',
-          '/tools/base64-converter',
-          '/tools/base64-image',
-          '/tools/image-to-base64',
-        ],
+        sources: ['/base64', '/base64-converter', '/base64-image', '/image-to-base64'],
         destination: '/tools/base64-image-converter',
       },
       // Timestamp Converter
       {
-        sources: [
-          '/timestamp-converter',
-          '/timestamp',
-          '/unix-timestamp',
-          '/epoch-converter',
-          '/tools/timestamp',
-          '/tools/unix-timestamp',
-          '/tools/epoch-converter',
-        ],
+        sources: ['/timestamp', '/unix-timestamp', '/epoch-converter', '/timestamp-converter'],
         destination: '/tools/timestamp-converter',
       },
       // Timezone Converter
       {
-        sources: [
-          '/timezone-converter',
-          '/timezone',
-          '/time-zone-converter',
-          '/world-clock',
-          '/tools/timezone',
-          '/tools/time-zone-converter',
-          '/tools/world-clock',
-        ],
+        sources: ['/timezone', '/timezone-converter', '/time-zone-converter', '/world-clock'],
         destination: '/tools/timezone-converter',
       },
       // Word Counter
       {
-        sources: [
-          '/word-counter',
-          '/word-count',
-          '/character-counter',
-          '/tools/word-count',
-          '/tools/character-counter',
-        ],
+        sources: ['/word-counter', '/word-count', '/character-counter'],
         destination: '/tools/word-counter',
       },
       // Case Converter
       {
-        sources: [
-          '/case-converter',
-          '/case-change',
-          '/uppercase-converter',
-          '/camelcase-converter',
-          '/tools/case-change',
-          '/tools/uppercase-converter',
-          '/tools/camelcase-converter',
-        ],
+        sources: ['/case-converter', '/case-change', '/uppercase-converter', '/camelcase-converter'],
         destination: '/tools/case-converter',
       },
       // Image Compressor
       {
-        sources: [
-          '/image-compressor',
-          '/compress-image',
-          '/image-compression',
-          '/photo-compressor',
-          '/tools/compress-image',
-          '/tools/image-compression',
-          '/tools/photo-compressor',
-        ],
+        sources: ['/image-compressor', '/compress-image', '/image-compression', '/photo-compressor'],
         destination: '/tools/image-compressor',
       },
       // Image Converter
       {
-        sources: [
-          '/image-converter',
-          '/convert-image',
-          '/png-to-jpg',
-          '/webp-converter',
-          '/tools/convert-image',
-          '/tools/png-to-jpg',
-          '/tools/webp-converter',
-        ],
+        sources: ['/image-converter', '/convert-image', '/png-to-jpg', '/webp-converter'],
         destination: '/tools/image-converter',
       },
       // Password Generator
       {
-        sources: [
-          '/password-generator',
-          '/password',
-          '/passgen',
-          '/random-password',
-          '/tools/password',
-          '/tools/passgen',
-          '/tools/random-password',
-        ],
+        sources: ['/password', '/password-generator', '/passgen', '/random-password'],
         destination: '/tools/password-generator',
       },
       // QR Code Generator
       {
-        sources: [
-          '/qr-code-generator',
-          '/qr-code',
-          '/qr',
-          '/qr-generator',
-          '/tools/qr-code',
-          '/tools/qr',
-          '/tools/qr-generator',
-        ],
+        sources: ['/qr', '/qr-code', '/qr-generator', '/qr-code-generator'],
         destination: '/tools/qr-code-generator',
       },
       // URL Encoder / Decoder
       {
-        sources: [
-          '/url-encoder-decoder',
-          '/url-encoder',
-          '/url-decoder',
-          '/url-encode',
-          '/tools/url-encoder',
-          '/tools/url-decoder',
-          '/tools/url-encode',
-        ],
+        sources: ['/url-encoder', '/url-decoder', '/url-encode', '/url-encoder-decoder'],
         destination: '/tools/url-encoder-decoder',
       },
       // Color Converter
       {
-        sources: [
-          '/color-converter',
-          '/hex-to-rgb',
-          '/rgb-to-hex',
-          '/color-picker',
-          '/tools/hex-to-rgb',
-          '/tools/rgb-to-hex',
-          '/tools/color-picker',
-        ],
+        sources: ['/color-converter', '/hex-to-rgb', '/rgb-to-hex', '/color-picker'],
         destination: '/tools/color-converter',
       },
       // Lorem Ipsum Generator
       {
-        sources: [
-          '/lorem-ipsum-generator',
-          '/lorem-ipsum',
-          '/lorem',
-          '/dummy-text',
-          '/tools/lorem-ipsum',
-          '/tools/lorem',
-          '/tools/dummy-text',
-        ],
+        sources: ['/lorem', '/lorem-ipsum', '/lorem-ipsum-generator', '/dummy-text'],
         destination: '/tools/lorem-ipsum-generator',
       },
       // Text Diff
       {
-        sources: [
-          '/text-diff',
-          '/diff-checker',
-          '/text-compare',
-          '/diff',
-          '/tools/diff-checker',
-          '/tools/text-compare',
-          '/tools/diff',
-        ],
+        sources: ['/diff', '/text-diff', '/diff-checker', '/text-compare'],
         destination: '/tools/text-diff',
       },
       // Word Frequency Analyzer
       {
-        sources: [
-          '/word-frequency-analyzer',
-          '/word-frequency',
-          '/keyword-density',
-          '/tools/word-frequency',
-          '/tools/keyword-density',
-        ],
+        sources: ['/word-frequency', '/word-frequency-analyzer', '/keyword-density'],
         destination: '/tools/word-frequency-analyzer',
       },
       // Text Reverser
       {
-        sources: [
-          '/text-reverser',
-          '/reverse-text',
-          '/text-flip',
-          '/tools/reverse-text',
-          '/tools/text-flip',
-        ],
+        sources: ['/text-reverser', '/reverse-text', '/text-flip'],
         destination: '/tools/text-reverser',
       },
       // List Randomizer
       {
-        sources: [
-          '/list-randomizer',
-          '/shuffle-list',
-          '/list-shuffler',
-          '/tools/shuffle-list',
-          '/tools/list-shuffler',
-        ],
+        sources: ['/list-randomizer', '/shuffle-list', '/list-shuffler'],
         destination: '/tools/list-randomizer',
       },
       // Number Randomizer
       {
-        sources: [
-          '/number-randomizer',
-          '/random-number',
-          '/random-number-generator',
-          '/rng',
-          '/tools/random-number',
-          '/tools/random-number-generator',
-          '/tools/rng',
-        ],
+        sources: ['/rng', '/random-number', '/random-number-generator', '/number-randomizer'],
         destination: '/tools/number-randomizer',
       },
       // Certificate Generator
       {
-        sources: [
-          '/certificate-generator',
-          '/certificate-maker',
-          '/create-certificate',
-          '/tools/certificate-maker',
-          '/tools/create-certificate',
-        ],
+        sources: ['/certificate-generator', '/certificate-maker', '/create-certificate'],
         destination: '/tools/certificate-generator',
       },
       // Markdown Editor
       {
-        sources: [
-          '/markdown-editor',
-          '/markdown-preview',
-          '/md-editor',
-          '/tools/markdown-preview',
-          '/tools/md-editor',
-        ],
+        sources: ['/markdown-editor', '/markdown-preview', '/md-editor'],
         destination: '/tools/markdown-editor',
       },
       // Name Wheel Picker
       {
-        sources: [
-          '/name-wheel-picker',
-          '/wheel-of-names',
-          '/random-name-picker',
-          '/spinner-wheel',
-          '/tools/wheel-of-names',
-          '/tools/random-name-picker',
-          '/tools/spinner-wheel',
-        ],
+        sources: ['/name-wheel-picker', '/wheel-of-names', '/random-name-picker', '/spinner-wheel'],
         destination: '/tools/name-wheel-picker',
       },
       // Age Calculator
       {
-        sources: [
-          '/age-calculator',
-          '/calculate-age',
-          '/age-calc',
-          '/tools/calculate-age',
-          '/tools/age-calc',
-        ],
+        sources: ['/age-calculator', '/calculate-age', '/age-calc'],
         destination: '/tools/age-calculator',
       },
       // BMI Calculator
       {
-        sources: [
-          '/bmi-calculator',
-          '/bmi',
-          '/calculate-bmi',
-          '/tools/bmi',
-          '/tools/calculate-bmi',
-        ],
+        sources: ['/bmi', '/bmi-calculator', '/calculate-bmi'],
         destination: '/tools/bmi-calculator',
       },
       // Percentage Calculator
       {
-        sources: [
-          '/percentage-calculator',
-          '/percentage',
-          '/percent-calculator',
-          '/tools/percentage',
-          '/tools/percent-calculator',
-        ],
+        sources: ['/percentage', '/percentage-calculator', '/percent-calculator'],
         destination: '/tools/percentage-calculator',
       },
       // Love Calculator
       {
-        sources: [
-          '/love-calculator',
-          '/love-test',
-          '/love-tester',
-          '/tools/love-test',
-          '/tools/love-tester',
-        ],
+        sources: ['/love-calculator', '/love-test', '/love-tester'],
         destination: '/tools/love-calculator',
       },
       // FLAMES Game
       {
-        sources: [
-          '/flames-game',
-          '/flames',
-          '/flames-calculator',
-          '/tools/flames',
-          '/tools/flames-calculator',
-        ],
+        sources: ['/flames', '/flames-game', '/flames-calculator'],
         destination: '/tools/flames-game',
       },
       // Delulu Meter
       {
-        sources: [
-          '/delulu-meter',
-          '/delulu-calculator',
-          '/delusional-meter',
-          '/tools/delulu-calculator',
-          '/tools/delusional-meter',
-        ],
+        sources: ['/delulu-meter', '/delulu-calculator', '/delusional-meter'],
         destination: '/tools/delulu-meter',
       },
     ];
