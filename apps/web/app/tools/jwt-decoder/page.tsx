@@ -258,8 +258,56 @@ export default function Page() {
     },
   };
 
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Jumpytools',
+        item: SITE_URL,
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Developer Tools',
+        item: `${SITE_URL}/tools?category=developer-tools`,
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'JWT Decoder',
+        item: pageUrl,
+      },
+    ],
+  };
+
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name: 'JWT Decoder Online - Decode & Verify JWT Tokens Free',
+    description: 'Free online JWT decoder and verifier. Decode, inspect, and verify JSON Web Tokens (JWT) instantly. Parse JWT headers, payload claims, check token expiry, and verify HS256, RS256, ES256 signatures — 100% client-side.',
+    url: pageUrl,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Jumpytools',
+      url: SITE_URL,
+    },
+    breadcrumb: breadcrumbJsonLd,
+    mainEntity: softwareAppJsonLd,
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareAppJsonLd) }}

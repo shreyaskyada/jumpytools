@@ -9,6 +9,35 @@ import { SITE_URL } from "@/config/site";
 export const metadata: Metadata = {
   title: "Jumpytools - Free Online Developer and Content Tools",
   description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  keywords: [
+    'online developer tools',
+    'free developer tools',
+    'web developer utilities',
+    'online tools',
+    'developer utilities',
+    'free online tools',
+    'text tools',
+    'content tools',
+    'developer tools online',
+    'web tools',
+    'code tools',
+    'formatting tools',
+    'converter tools',
+    'calculator tools',
+    'security tools',
+    'json formatter',
+    'uuid generator',
+    'base64 converter',
+    'password generator',
+    'qr code generator',
+    'text diff',
+    'word counter',
+    'timestamp converter',
+    'color converter',
+    'image compressor',
+    'jumpytools',
+    'jumpy tools',
+  ],
 };
 
 function ClientHomeSkeleton() {
@@ -58,7 +87,7 @@ function ClientHomeSkeleton() {
 }
 
 export default function HomePage() {
-  const jsonLd = {
+  const webSiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Jumpytools",
@@ -74,11 +103,32 @@ export default function HomePage() {
     }
   };
 
+  // ItemList tells Google "this page is a directory — each tool lives at its own URL"
+  // This prevents the homepage from cannibalizing individual tool pages in search results
+  const toolsItemListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Free Online Developer and Content Tools",
+    description: "A collection of free, browser-based developer utilities, text tools, image tools, and calculators.",
+    numberOfItems: tools.length,
+    itemListElement: tools.map((tool, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: tool.title,
+      description: tool.description,
+      url: `${SITE_URL}/tools/${tool.slug}`,
+    })),
+  };
+
   return (
     <Container className="py-10 flex-1">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(toolsItemListJsonLd) }}
       />
       <Suspense fallback={<ClientHomeSkeleton />}>
         <ClientHome tools={tools} categories={categories} />

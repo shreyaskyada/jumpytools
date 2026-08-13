@@ -9,7 +9,12 @@ const nextConfig = {
     const aliasMap = [
       // JWT Decoder
       {
-        sources: ['/jwt', '/jwt-decoder', '/jwt-decode', '/jwt-token', '/decode-jwt', '/token-decoder'],
+        sources: [
+          '/jwt', '/jwt-decoder', '/jwt-decode', '/jwt-token', '/decode-jwt', '/token-decoder',
+          '/jwt-debugger', '/jwt-verifier', '/jwt-validator', '/jwt-checker', '/jwt-inspector',
+          '/jwt-parser', '/jwt-reader', '/bearer-token-decoder', '/decode-token',
+          '/jwt-token-decoder', '/token-parser',
+        ],
         destination: '/tools/jwt-decoder',
       },
       // JWT Generator
