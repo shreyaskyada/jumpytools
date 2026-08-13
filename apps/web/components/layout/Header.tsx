@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { Sun, Moon, Wrench, Sparkles, Search } from "lucide-react";
+import { Sun, Moon, Sparkles, Search } from "lucide-react";
+import { LogoIcon } from "@/components/ui/Logo";
 import { Button } from "@/components/ui/button";
 import { categories } from "@/config/categories";
 import { useState, useEffect } from "react";
@@ -53,7 +54,7 @@ export default function Header() {
             className="flex items-center gap-2 font-bold text-xl tracking-tight"
           >
             <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-              <Wrench className="h-4.5 w-4.5" />
+              <LogoIcon size={20} />
             </span>
             <span className="bg-gradient-to-r from-foreground via-foreground/90 to-muted-foreground bg-clip-text text-transparent">
               Jumpytools

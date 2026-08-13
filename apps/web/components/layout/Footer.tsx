@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Wrench } from "lucide-react";
+import { LogoIcon } from "@/components/ui/Logo";
 import Container from "@/components/layout/Container";
 
 export default function Footer() {
@@ -15,7 +15,7 @@ export default function Footer() {
               className="flex items-center gap-2 font-bold text-xl tracking-tight text-foreground"
             >
               <span className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-primary-foreground">
-                <Wrench className="h-3 w-3" />
+                <LogoIcon size={14} />
               </span>
               <span>Jumpytools</span>
             </Link>
