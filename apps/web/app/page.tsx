@@ -133,6 +133,43 @@ export default function HomePage() {
       <Suspense fallback={<ClientHomeSkeleton />}>
         <ClientHome tools={tools} categories={categories} />
       </Suspense>
+
+      {/* Server-rendered tool directory — always in the HTML for crawlers */}
+      <section className="border-t border-border/60 mt-14 pt-10 pb-6">
+        <h2 className="text-2xl font-bold tracking-tight text-foreground mb-2">
+          Browse All Free Online Tools
+        </h2>
+        <p className="text-sm text-muted-foreground mb-8 max-w-2xl">
+          {tools.length} free browser-based tools — no sign-up, no data uploaded, everything runs 100% client-side.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-8 gap-y-6">
+          {categories.map((cat) => {
+            const catTools = tools.filter((t) => t.category === cat.id);
+            if (catTools.length === 0) return null;
+            return (
+              <div key={cat.id}>
+                <h3 className="font-semibold text-foreground text-sm mb-2">
+                  <a href={`/category/${cat.id}`} className="hover:underline">
+                    {cat.name}
+                  </a>
+                </h3>
+                <ul className="space-y-1">
+                  {catTools.map((tool) => (
+                    <li key={tool.slug}>
+                      <a
+                        href={`/tools/${tool.slug}`}
+                        className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                      >
+                        {tool.title}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     </Container>
   );
 }

@@ -3,7 +3,7 @@ import { categories, categoryThemes } from "@/config/categories";
 import { tools } from "@/config/tools";
 import Container from "@/components/layout/Container";
 import CategoryToolsGrid from "./components/CategoryToolsGrid";
-import { Code, FileText, Palette, Calculator, Shield, Wrench, Image as ImageIcon, ArrowLeft } from "lucide-react";
+import { Code, FileText, Palette, Calculator, Shield, Wrench, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -49,16 +49,16 @@ export default function CategoryDetailView({ slug }: CategoryDetailViewProps) {
 
       <Container className="py-8 flex-grow relative z-10">
         <div className="flex flex-col gap-10 w-full">
-          {/* Back Button */}
-          <div>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground hover:text-foreground transition-colors group"
-            >
-              <ArrowLeft className="h-4 w-4 group-hover:-translate-x-0.5 transition-transform" />
-              Back to Categories
+          {/* Breadcrumb Navigation */}
+          <nav className="flex items-center gap-1.5 text-xs text-muted-foreground/80 font-medium" aria-label="Breadcrumb">
+            <Link href="/" className="hover:text-foreground transition-colors">
+              Home
             </Link>
-          </div>
+            <span className="text-muted-foreground/45">/</span>
+            <span className="text-foreground font-semibold" aria-current="page">
+              {category.name}
+            </span>
+          </nav>
 
           {/* Hero Section */}
           <div className="flex flex-col gap-4">
@@ -86,6 +86,29 @@ export default function CategoryDetailView({ slug }: CategoryDetailViewProps) {
 
           {/* Tools Grid with Search */}
           <CategoryToolsGrid tools={categoryTools} categorySlug={slug} />
+
+          {/* Server-rendered tool list for SEO — visible content that crawlers always see */}
+          <section className="border-t border-border/60 pt-8">
+            <h2 className="text-xl font-bold tracking-tight text-foreground mb-4">
+              All {category.name} on Jumpytools
+            </h2>
+            <p className="text-sm text-muted-foreground mb-6">
+              Browse {categoryTools.length} free {category.name.toLowerCase()} — all run 100% in your browser with no data sent to any server.
+            </p>
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              {categoryTools.map((tool) => (
+                <li key={tool.slug}>
+                  <Link
+                    href={`/tools/${tool.slug}`}
+                    className="block p-3 rounded-lg border border-border/50 hover:border-primary/40 hover:bg-muted/50 transition-colors"
+                  >
+                    <span className="font-medium text-foreground text-sm">{tool.title}</span>
+                    <span className="block text-xs text-muted-foreground mt-0.5 line-clamp-2">{tool.description}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
       </Container>
     </div>
