@@ -95,7 +95,7 @@ export default function CategoryDetailView({ slug }: CategoryDetailViewProps) {
             <p className="text-sm text-muted-foreground mb-6">
               Browse {categoryTools.length} free {category.name.toLowerCase()} — all run 100% in your browser with no data sent to any server.
             </p>
-            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-10">
               {categoryTools.map((tool) => (
                 <li key={tool.slug}>
                   <Link
@@ -108,6 +108,41 @@ export default function CategoryDetailView({ slug }: CategoryDetailViewProps) {
                 </li>
               ))}
             </ul>
+
+            {/* About Category Section */}
+            {category.longDescription && category.longDescription.length > 0 && (
+              <div className="border-t border-border/60 pt-8 mb-10">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground mb-4">
+                  About {category.name} Utilities
+                </h2>
+                <div className="space-y-4 text-sm text-muted-foreground leading-relaxed">
+                  {category.longDescription.map((para, idx) => (
+                    <p key={idx}>{para}</p>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Category FAQ Section */}
+            {category.faqs && category.faqs.length > 0 && (
+              <div className="border-t border-border/60 pt-8">
+                <h2 className="text-2xl font-bold tracking-tight text-foreground mb-6">
+                  Frequently Asked Questions
+                </h2>
+                <div className="space-y-4">
+                  {category.faqs.map((faq, idx) => (
+                    <div key={idx} className="p-4 rounded-xl border border-border/50 bg-card/50">
+                      <h3 className="font-semibold text-foreground text-sm mb-2">
+                        {faq.question}
+                      </h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </section>
         </div>
       </Container>
