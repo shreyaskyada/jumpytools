@@ -1,9 +1,13 @@
 import { Metadata } from "next";
 import Container from "@/components/layout/Container";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Privacy Policy - Jumpytools",
   description: "Privacy Policy for Jumpytools",
+  alternates: {
+    canonical: `${SITE_URL}/privacy-policy`,
+  },
 };
 
 export default function PrivacyPolicy() {

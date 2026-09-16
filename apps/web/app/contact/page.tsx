@@ -1,10 +1,14 @@
 import { Metadata } from "next";
 import Container from "@/components/layout/Container";
 import { Mail, MessageSquare } from "lucide-react";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "Contact Us - Jumpytools",
   description: "Get in touch with the Jumpytools team for feedback, feature requests, or bug reports.",
+  alternates: {
+    canonical: `${SITE_URL}/contact`,
+  },
 };
 
 export default function ContactPage() {

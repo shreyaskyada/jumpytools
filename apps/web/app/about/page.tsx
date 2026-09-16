@@ -1,10 +1,14 @@
 import { Metadata } from "next";
 import Container from "@/components/layout/Container";
 import { ShieldCheck, Zap, Heart } from "lucide-react";
+import { SITE_URL } from "@/config/site";
 
 export const metadata: Metadata = {
   title: "About Us - Jumpytools",
   description: "Why we built Jumpytools: simple, fast, and 100% private developer utilities that run entirely in your web browser.",
+  alternates: {
+    canonical: `${SITE_URL}/about`,
+  },
 };
 
 export default function AboutPage() {
