@@ -127,6 +127,7 @@ export function useNameWheelPicker(onSpinComplete?: (winnerName: string) => void
     const totalRotation = startRotation + Math.PI * 2 * (5 + Math.random() * 5);
 
     const startTime = performance.now();
+    let lastSliceIndex = getPointerIndex(startRotation, names.length);
 
     const animate = (currentTime: number) => {
       const elapsed = currentTime - startTime;
@@ -135,6 +136,11 @@ export function useNameWheelPicker(onSpinComplete?: (winnerName: string) => void
 
       rotationRef.current = startRotation + (totalRotation - startRotation) * easedProgress;
       drawWheel();
+
+      const currentSliceIndex = getPointerIndex(rotationRef.current, names.length);
+      if (currentSliceIndex !== lastSliceIndex) {
+        lastSliceIndex = currentSliceIndex;
+      }
 
       if (progress < 1) {
         spinAnimationFrame.current = requestAnimationFrame(animate);
