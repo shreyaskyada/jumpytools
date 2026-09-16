@@ -26,6 +26,9 @@ export const metadata: Metadata = {
     template: "%s | Jumpytools",
   },
   description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  alternates: {
+    canonical: SITE_URL,
+  },
   robots: {
     index: true,
     follow: true,

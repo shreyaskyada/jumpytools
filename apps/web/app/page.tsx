@@ -9,6 +9,9 @@ import { SITE_URL } from "@/config/site";
 export const metadata: Metadata = {
   title: "Jumpytools - Free Online Developer and Content Tools",
   description: "Browse 100+ free online developer utilities, text formatting calculators, design tools, and security converters. Private, fast, and secure.",
+  alternates: {
+    canonical: SITE_URL,
+  },
   keywords: [
     'online developer tools',
     'free developer tools',
