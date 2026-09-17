@@ -42,23 +42,28 @@ export function QRCodeGeneratorTool() {
   };
 
   const ColorPicker = ({
+    id,
     label,
     value,
     onChange,
   }: {
+    id: string;
     label: string;
     value: string;
     onChange: (v: string) => void;
   }) => (
     <div className="flex flex-col gap-2">
-      <label className="text-xs font-bold text-muted-foreground">{label}</label>
+      <label htmlFor={id} className="text-xs font-bold text-foreground">
+        {label}
+      </label>
       <div className="relative flex items-center">
         <Popover>
           <PopoverTrigger
             type="button"
+            aria-label={`Open color picker for ${label}`}
             className="absolute left-1.5 h-7 w-7 rounded-sm border border-border/80 shadow-sm overflow-hidden shrink-0 z-10 cursor-pointer transition-all hover:scale-110 active:scale-95"
             style={{ backgroundColor: value }}
-            title="Pick a color"
+            title={`Pick ${label}`}
           />
           <PopoverContent
             className="w-auto p-4 flex flex-col gap-4 rounded-xl shadow-xl border-border/80 bg-card"
@@ -70,7 +75,7 @@ export function QRCodeGeneratorTool() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider">
+              <span className="text-xs font-bold text-foreground uppercase tracking-wider">
                 Presets
               </span>
               <div className="grid grid-cols-6 gap-2">
@@ -78,6 +83,7 @@ export function QRCodeGeneratorTool() {
                   <button
                     key={c}
                     type="button"
+                    aria-label={`Select preset color ${c}`}
                     className={`h-6 w-6 rounded-md shadow-xs border cursor-pointer transition-all hover:scale-110 active:scale-95 ${
                       value.toUpperCase() === c.toUpperCase()
                         ? 'border-primary ring-2 ring-primary/30'
@@ -93,9 +99,11 @@ export function QRCodeGeneratorTool() {
           </PopoverContent>
         </Popover>
         <Input
+          id={id}
           type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
+          aria-label={label}
           className="h-10 pl-11 font-mono text-sm uppercase bg-background shadow-xs transition-colors focus-visible:ring-1 focus-visible:border-primary"
           maxLength={7}
         />
@@ -114,32 +122,44 @@ export function QRCodeGeneratorTool() {
         <div className="lg:col-span-2 flex flex-col gap-6">
           {/* Data Input Card */}
           <Card className="border border-border/80 bg-card shadow-xs">
-            <div className="px-1 py-1 border-b border-border/60 flex">
+            <div className="px-1 py-1 border-b border-border/60 flex" role="tablist" aria-label="QR Code Input Types">
               <button
+                role="tab"
+                id="qr-tab-url"
+                aria-selected={state.activeTab === 'url'}
+                aria-controls="qr-panel-url"
                 className={`flex-1 py-3 text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer ${
                   state.activeTab === 'url'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground hover:bg-muted/30'
+                    ? 'text-primary border-b-2 border-primary font-bold'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/30'
                 }`}
                 onClick={() => setActiveTab('url')}
               >
                 <Link className="h-4 w-4" /> URL
               </button>
               <button
+                role="tab"
+                id="qr-tab-text"
+                aria-selected={state.activeTab === 'text'}
+                aria-controls="qr-panel-text"
                 className={`flex-1 py-3 text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer ${
                   state.activeTab === 'text'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground hover:bg-muted/30'
+                    ? 'text-primary border-b-2 border-primary font-bold'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/30'
                 }`}
                 onClick={() => setActiveTab('text')}
               >
                 <Type className="h-4 w-4" /> Text
               </button>
               <button
+                role="tab"
+                id="qr-tab-vcard"
+                aria-selected={state.activeTab === 'vcard'}
+                aria-controls="qr-panel-vcard"
                 className={`flex-1 py-3 text-sm font-semibold flex items-center justify-center gap-2 transition-colors cursor-pointer ${
                   state.activeTab === 'vcard'
-                    ? 'text-primary border-b-2 border-primary'
-                    : 'text-muted-foreground hover:bg-muted/30'
+                    ? 'text-primary border-b-2 border-primary font-bold'
+                    : 'text-foreground/70 hover:text-foreground hover:bg-muted/30'
                 }`}
                 onClick={() => setActiveTab('vcard')}
               >
@@ -148,9 +168,12 @@ export function QRCodeGeneratorTool() {
             </div>
             <CardContent className="p-5">
               {state.activeTab === 'url' && (
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-muted-foreground">Website URL</label>
+                <div id="qr-panel-url" role="tabpanel" aria-labelledby="qr-tab-url" className="flex flex-col gap-2">
+                  <label htmlFor="qr-url-input" className="text-xs font-bold text-foreground">
+                    Website URL
+                  </label>
                   <Input
+                    id="qr-url-input"
                     type="url"
                     value={state.url}
                     onChange={(e) => setUrl(e.target.value)}
@@ -161,9 +184,12 @@ export function QRCodeGeneratorTool() {
               )}
 
               {state.activeTab === 'text' && (
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-muted-foreground">Custom Text</label>
+                <div id="qr-panel-text" role="tabpanel" aria-labelledby="qr-tab-text" className="flex flex-col gap-2">
+                  <label htmlFor="qr-text-input" className="text-xs font-bold text-foreground">
+                    Custom Text
+                  </label>
                   <Textarea
+                    id="qr-text-input"
                     value={state.text}
                     onChange={(e) => setText(e.target.value)}
                     placeholder="Enter the text to encode..."
@@ -174,10 +200,13 @@ export function QRCodeGeneratorTool() {
               )}
 
               {state.activeTab === 'vcard' && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div id="qr-panel-vcard" role="tabpanel" aria-labelledby="qr-tab-vcard" className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">First Name</label>
+                    <label htmlFor="vcard-firstname" className="text-xs font-bold text-foreground">
+                      First Name
+                    </label>
                     <Input
+                      id="vcard-firstname"
                       type="text"
                       value={state.vCard.firstName}
                       onChange={(e) => updateVCard({ firstName: e.target.value })}
@@ -186,8 +215,11 @@ export function QRCodeGeneratorTool() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">Last Name</label>
+                    <label htmlFor="vcard-lastname" className="text-xs font-bold text-foreground">
+                      Last Name
+                    </label>
                     <Input
+                      id="vcard-lastname"
                       type="text"
                       value={state.vCard.lastName}
                       onChange={(e) => updateVCard({ lastName: e.target.value })}
@@ -196,8 +228,11 @@ export function QRCodeGeneratorTool() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">Phone Number</label>
+                    <label htmlFor="vcard-phone" className="text-xs font-bold text-foreground">
+                      Phone Number
+                    </label>
                     <Input
+                      id="vcard-phone"
                       type="tel"
                       value={state.vCard.phone}
                       onChange={(e) => updateVCard({ phone: e.target.value })}
@@ -206,8 +241,11 @@ export function QRCodeGeneratorTool() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">Email</label>
+                    <label htmlFor="vcard-email" className="text-xs font-bold text-foreground">
+                      Email
+                    </label>
                     <Input
+                      id="vcard-email"
                       type="email"
                       value={state.vCard.email}
                       onChange={(e) => updateVCard({ email: e.target.value })}
@@ -216,8 +254,11 @@ export function QRCodeGeneratorTool() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">Website</label>
+                    <label htmlFor="vcard-website" className="text-xs font-bold text-foreground">
+                      Website
+                    </label>
                     <Input
+                      id="vcard-website"
                       type="url"
                       value={state.vCard.website}
                       onChange={(e) => updateVCard({ website: e.target.value })}
@@ -226,8 +267,11 @@ export function QRCodeGeneratorTool() {
                     />
                   </div>
                   <div className="flex flex-col gap-2">
-                    <label className="text-xs font-bold text-muted-foreground">Company</label>
+                    <label htmlFor="vcard-company" className="text-xs font-bold text-foreground">
+                      Company
+                    </label>
                     <Input
+                      id="vcard-company"
                       type="text"
                       value={state.vCard.company}
                       onChange={(e) => updateVCard({ company: e.target.value })}
@@ -249,37 +293,45 @@ export function QRCodeGeneratorTool() {
             </div>
             <CardContent className="p-5 flex flex-col gap-6">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <ColorPicker label="Foreground Color" value={state.fgColor} onChange={setFgColor} />
-                <ColorPicker label="Background Color" value={state.bgColor} onChange={setBgColor} />
+                <ColorPicker id="qr-fg-color" label="Foreground Color" value={state.fgColor} onChange={setFgColor} />
+                <ColorPicker id="qr-bg-color" label="Background Color" value={state.bgColor} onChange={setBgColor} />
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center">
-                    <label className="text-xs font-bold text-muted-foreground">Size (px)</label>
+                    <label htmlFor="qr-size-slider" className="text-xs font-bold text-foreground">
+                      Size (px)
+                    </label>
                     <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
                       {state.size}
                     </span>
                   </div>
                   <RangeSlider
+                    id="qr-size-slider"
+                    label="QR Code Size in pixels"
                     min={128}
                     max={512}
                     step={16}
                     value={state.size}
                     onChange={setSize}
-                    minLabel="128"
-                    maxLabel="512"
+                    minLabel="128px"
+                    maxLabel="512px"
                   />
                 </div>
 
                 <div className="flex flex-col gap-3">
                   <div className="flex justify-between items-center">
-                    <label className="text-xs font-bold text-muted-foreground">Quiet Zone (Margin)</label>
+                    <label htmlFor="qr-margin-slider" className="text-xs font-bold text-foreground">
+                      Quiet Zone (Margin)
+                    </label>
                     <span className="text-xs font-mono font-bold px-2 py-0.5 rounded bg-primary/10 text-primary">
                       {state.margin}
                     </span>
                   </div>
                   <RangeSlider
+                    id="qr-margin-slider"
+                    label="Quiet Zone Margin"
                     min={0}
                     max={8}
                     step={1}
@@ -305,17 +357,18 @@ export function QRCodeGeneratorTool() {
                 {state.qrDataUrl ? (
                   <img
                     src={state.qrDataUrl}
-                    alt="Generated QR Code"
+                    alt="Generated QR Code Preview"
                     className="max-h-full max-w-full object-contain"
                   />
                 ) : (
-                  <div className="text-center text-xs text-muted-foreground">Generating...</div>
+                  <div className="text-center text-xs text-muted-foreground font-medium">Generating...</div>
                 )}
               </div>
 
               <Button
                 onClick={handleDownload}
                 disabled={!state.qrDataUrl || state.generating}
+                aria-label="Download generated QR Code image in PNG format"
                 className="w-full h-11 flex items-center justify-center gap-2 font-semibold shadow-sm cursor-pointer hover:bg-primary/95 active:scale-[0.98] transition-all"
               >
                 <Download className="h-4 w-4" /> Download PNG

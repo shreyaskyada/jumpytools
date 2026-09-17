@@ -10,15 +10,13 @@ export function easeOutQuart(x: number): number {
 }
 
 export function getPointerIndex(rotation: number, count: number): number {
-  if (count <= 0) return 0;
+  const finalRotation = rotation % (2 * Math.PI);
   const arc = (2 * Math.PI) / count;
 
-  // The pointer is positioned at 12 o'clock (1.5 * PI or -0.5 * PI radians)
-  const normalizedRotation = ((rotation % (2 * Math.PI)) + 2 * Math.PI) % (2 * Math.PI);
-  let pointerAngle = (1.5 * Math.PI - normalizedRotation) % (2 * Math.PI);
+  let pointerAngle = (2 * Math.PI - (finalRotation % (2 * Math.PI))) % (2 * Math.PI);
   if (pointerAngle < 0) {
     pointerAngle += 2 * Math.PI;
   }
 
-  return Math.floor(pointerAngle / arc) % count;
+  return Math.floor(pointerAngle / arc);
 }

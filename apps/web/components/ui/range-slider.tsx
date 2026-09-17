@@ -3,6 +3,8 @@
 import React from "react";
 
 export interface RangeSliderProps {
+  id?: string;
+  label?: string;
   min: number;
   max: number;
   step: number;
@@ -12,7 +14,7 @@ export interface RangeSliderProps {
   maxLabel?: string;
 }
 
-export function RangeSlider({ min, max, step, value, onChange, minLabel, maxLabel }: RangeSliderProps) {
+export function RangeSlider({ id, label, min, max, step, value, onChange, minLabel, maxLabel }: RangeSliderProps) {
   const pct = ((value - min) / (max - min)) * 100;
 
   return (
@@ -21,6 +23,11 @@ export function RangeSlider({ min, max, step, value, onChange, minLabel, maxLabe
         <div className="absolute inset-x-0 h-1.5 rounded-full bg-border/70" />
         <div className="absolute h-1.5 rounded-full bg-primary transition-all" style={{ width: `${pct}%` }} />
         <input
+          id={id}
+          aria-label={label || "Range slider"}
+          aria-valuemin={min}
+          aria-valuemax={max}
+          aria-valuenow={value}
           type="range"
           min={min}
           max={max}
@@ -37,8 +44,8 @@ export function RangeSlider({ min, max, step, value, onChange, minLabel, maxLabe
       </div>
       {(minLabel || maxLabel) && (
         <div className="flex justify-between mt-1">
-          <span className="text-[10px] text-muted-foreground">{minLabel}</span>
-          <span className="text-[10px] text-muted-foreground">{maxLabel}</span>
+          <span className="text-[10px] font-medium text-muted-foreground">{minLabel}</span>
+          <span className="text-[10px] font-medium text-muted-foreground">{maxLabel}</span>
         </div>
       )}
     </div>
