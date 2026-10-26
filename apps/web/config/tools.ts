@@ -106,6 +106,15 @@ export const tools: Tool[] = [
     fullWidth: false,
   },
   {
+    slug: "hash-generator",
+    title: "Hash Generator",
+    description:
+      "Generate MD5, SHA-1, SHA-224, SHA-256, SHA-384, and SHA-512 cryptographic hashes instantly with client-side privacy.",
+    category: "security-tools",
+    featured: true,
+    fullWidth: true,
+  },
+  {
     slug: "qr-code-generator",
     title: "QR Code Generator",
     description:
@@ -239,6 +248,15 @@ export const tools: Tool[] = [
     category: "math-calc",
     featured: true,
     fullWidth: false,
+  },
+  {
+    slug: "unit-converter",
+    title: "Unit Converter",
+    description:
+      "Convert between metric and imperial units for length, weight, temperature, volume, speed, area, and digital data instantly.",
+    category: "math-calc",
+    featured: true,
+    fullWidth: true,
   },
   {
     slug: "love-calculator",

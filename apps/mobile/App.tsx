@@ -12,9 +12,13 @@ import { useColorScheme } from 'nativewind';
 import Svg, { LinearGradient, Stop, Text as SvgText, Defs } from 'react-native-svg';
 
 import JsonFormatterScreen from './tools/json-formatter/screen';
+import HashGeneratorScreen from './tools/hash-generator/screen';
+import UnitConverterScreen from './tools/unit-converter/screen';
 
 const sampleTools = [
   { id: 'json-formatter', title: 'JSON Formatter', desc: 'Format and validate your JSON data instantly.', category: 'Dev' },
+  { id: 'unit-converter', title: 'Unit Converter', desc: 'Convert length, weight, temperature, and more.', category: 'Math' },
+  { id: 'hash-generator', title: 'Hash Generator', desc: 'Generate MD5, SHA-1, SHA-256, and SHA-512 hashes.', category: 'Crypto' },
   { id: 'regex-tester', title: 'Regex Tester', desc: 'Test and debug your regular expressions.', category: 'Text' },
   { id: 'base64-encoder', title: 'Base64 Encoder', desc: 'Encode and decode strings to Base64.', category: 'Crypto' },
 ];
@@ -134,10 +138,34 @@ function AppContent() {
                 </Text>
               </>
             )}
+            {activeTool === 'hash-generator' && (
+              <>
+                <View style={{ width: 3, height: 3, borderRadius: 2, backgroundColor: isDarkMode ? '#3f3f46' : '#d4d4d8', marginHorizontal: 6 }} />
+                <Text style={{ fontSize: 13, color: isDarkMode ? '#52525b' : '#a1a1aa' }}>Security Tools</Text>
+                <View style={{ width: 3, height: 3, borderRadius: 2, backgroundColor: isDarkMode ? '#3f3f46' : '#d4d4d8', marginHorizontal: 6 }} />
+                <Text style={{ fontSize: 13, fontWeight: '600', color: isDarkMode ? '#e4e4e7' : '#18181b' }}>
+                  Hash Generator
+                </Text>
+              </>
+            )}
+            {activeTool === 'unit-converter' && (
+              <>
+                <View style={{ width: 3, height: 3, borderRadius: 2, backgroundColor: isDarkMode ? '#3f3f46' : '#d4d4d8', marginHorizontal: 6 }} />
+                <Text style={{ fontSize: 13, color: isDarkMode ? '#52525b' : '#a1a1aa' }}>Math & Calc</Text>
+                <View style={{ width: 3, height: 3, borderRadius: 2, backgroundColor: isDarkMode ? '#3f3f46' : '#d4d4d8', marginHorizontal: 6 }} />
+                <Text style={{ fontSize: 13, fontWeight: '600', color: isDarkMode ? '#e4e4e7' : '#18181b' }}>
+                  Unit Converter
+                </Text>
+              </>
+            )}
           </View>
 
           {activeTool === 'json-formatter' ? (
             <JsonFormatterScreen />
+          ) : activeTool === 'hash-generator' ? (
+            <HashGeneratorScreen />
+          ) : activeTool === 'unit-converter' ? (
+            <UnitConverterScreen />
           ) : (
             <View className="flex-1 items-center justify-center p-4">
               <Text className="text-xl font-bold text-foreground font-sans text-center mb-2">Coming Soon</Text>
